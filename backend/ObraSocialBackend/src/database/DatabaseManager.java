@@ -32,14 +32,14 @@ public class DatabaseManager {
         addData();
     }
 
-    private static ResultSet makeDatabaseQuery(String query) throws SQLException {
+    public ResultSet makeDatabaseQuery(String query) throws SQLException {
         Connection c = DriverManager.getConnection(FULL_DATABASE_DRIVER);
         Statement s = c.createStatement();
         s.setQueryTimeout(30);
         return s.executeQuery(query);
     }
 
-    private static void makeDatabaseUpdate(String query) throws SQLException {
+    public void makeDatabaseUpdate(String query) throws SQLException {
         Connection c = DriverManager.getConnection(FULL_DATABASE_DRIVER);
         Statement s = c.createStatement();
         s.setQueryTimeout(30);
