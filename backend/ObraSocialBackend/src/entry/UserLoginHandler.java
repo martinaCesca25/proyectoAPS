@@ -1,4 +1,4 @@
-package login;
+package entry;
 
 import database.DatabaseManager;
 
@@ -20,12 +20,12 @@ public class UserLoginHandler {
                 String storedPassword = rs.getString("password");
 
                 if(storedPassword.equals(password)) {
-                    System.out.println("Successfully logged in.");
+                    System.out.println("Ha entrado al sistema exitosamente.");
                 } else {
-                    System.out.println("Incorrect password.");
+                    System.out.println("Contraseña incorrecta.");
                 }
             } else {
-                System.out.println("There are no registered users with that email.");
+                System.out.println("No hay usuarios registrados con ese email.");
             }
         } catch (SQLException e) {
             System.out.println("SQL Error while querying the database.");
