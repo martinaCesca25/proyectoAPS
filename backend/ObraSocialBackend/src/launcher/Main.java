@@ -3,6 +3,7 @@ package launcher;
 import database.DatabaseManager;
 import entry.UserLoginHandler;
 import entry.UserSignInHandler;
+import entry.UserSubscriptionHandler;
 
 public class Main {
     public static void main(String[] args) {
@@ -40,5 +41,12 @@ public class Main {
 
         ush.clientSignIn(email, dni, password, nombre, apellido, telefono, edad, localidad); //Sign in exitoso
         ush.clientSignIn(email, dni, password, nombre, apellido, telefono, edad, localidad); //Sign in fallido, ya existe el usuario.
+    }
+    public static void demoSubscribe(DatabaseManager dbm) {
+        UserSubscriptionHandler ush = new UserSubscriptionHandler(dbm);
+
+        String email = "leclerc@ferrari.com";
+
+        ush.clientSubscribe(email); //Subscribe exitoso
     }
 }

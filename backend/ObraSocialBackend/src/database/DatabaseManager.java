@@ -181,12 +181,14 @@ public class DatabaseManager {
                 "    ('maria@example.com', 987654321, 'password2', 'Maria', 'López', '987-654-3210', 28),\n" +
                 "    ('carlos@ospifak.com', 555555555, 'password3', 'Carlos', 'Martínez', '555-555-5555', 42),\n" +
                 "    ('laura@ospifak.com', 444444444, 'password4', 'Laura', 'Fernández', '444-444-4444', 22);\n" +
+                "    ('martin@ospifak.com', 744454414, 'password5', 'Martin', 'Fernández', '444-444-4423', 77);\n" +
                 "\n" +
                 "-- Agregar datos a la tabla clientes\n" +
                 "INSERT INTO clientes(email, localidad)\n" +
                 "VALUES\n" +
                 "    ('juan@example.com', 'Buenos Aires'),\n" +
                 "    ('maria@example.com', 'Madrid');\n" +
+                "    ('martin@ospifak.com', 'Buenos Aires');\n" +
                 "\n" +
                 "-- Agregar datos a la tabla empleados\n" +
                 "INSERT INTO empleados(email, cargo)\n" +
@@ -229,12 +231,16 @@ public class DatabaseManager {
                 "VALUES\n" +
                 "    ('juan@example.com', 101),\n" +
                 "    ('maria@example.com', 102);\n" +
+                "    ('martin@ospifak.com', 103);\n" +
+                "    ('maria@example.com', 104);\n" +
                 "\n" +
                 "-- Agregar datos a la tabla pago\n" +
                 "INSERT INTO pago(id_pago, monto, fecha, id_suscripcion)\n" +
                 "VALUES\n" +
                 "    (201, 100, '2023-08-01', 101),\n" +
                 "    (202, 150, '2023-08-02', 102);\n" +
+                "    (203, 200, '2023-08-03', 103);\n" +
+                "    (204, 150, '2023-08-04', 104);\n" +
                 "\n" +
                 "-- Agregar datos a la tabla planes\n" +
                 "INSERT INTO planes(id_plan, categoria, costo, min_edad, max_edad, nombre_plan)\n" +
@@ -242,13 +248,17 @@ public class DatabaseManager {
                 "    (1, 'Oro', 200, 0, 21, 'Plan Juvenil'),\n" +
                 "    (2, 'Plata', 250, 21, 35, 'Plan Estándar'),\n" +
                 "    (3, 'Cobre', 300, 35, 55, 'Plan Familiar'),\n" +
-                "    (4, 'Oro', 350, 55, 100, 'Plan de Jubilación');\n" +
+                "    (4, 'Oro', 350, 55, 100, 'Plan de Jubilación Premium');\n" +
+                "    (5, 'Oro', 400, 0, 100, 'Plan Premium');\n" +
+                "    (6, 'Plata', 250, 55, 100, 'Plan de Jubilación');\n" +
                 "\n" +
                 "-- Agregar datos a la tabla suscripcion_plan\n" +
                 "INSERT INTO suscripcion_plan(id_plan, categoria, id_suscripcion)\n" +
                 "VALUES\n" +
                 "    (1, 'Oro', 101),\n" +
                 "    (2, 'Plata', 102);\n" +
+                "    (3, 'Cobre', 103);\n" +
+                "    (4, 'Oro', 104);\n" +
                 "\n" +
                 "-- Agregar datos a la tabla prestaciones\n" +
                 "INSERT INTO prestaciones(id_prestacion, nombre_prestacion)\n" +
