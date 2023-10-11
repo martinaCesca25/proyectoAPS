@@ -18,14 +18,14 @@ public class UserSubscriptionHandler {
         try {
                 String cliente_suscripcion = "INSERT INTO cliente_suscripcion(email_cliente, id_suscripcion) VALUES (" +
                         "'" + email + "', " +
-                        "'" + idCounter + ")";
+                        "" + idCounter + ")";
 
                 dbm.makeDatabaseUpdate(cliente_suscripcion);
 
                 System.out.println("Se ha suscripto en el sistema de manera exitosa.");
             } catch (SQLException e) {
-            System.out.println("SQL Error while querying the database.");
-        }
+                System.out.println("SQL Error while querying the database.");
+            }
     }
 }
 
