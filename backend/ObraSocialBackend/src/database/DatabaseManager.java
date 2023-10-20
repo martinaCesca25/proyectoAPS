@@ -9,6 +9,8 @@ public class DatabaseManager {
     private static final String DATABASE_EXTENSION = ".db";
     private static final String FULL_DATABASE_DRIVER = DATABASE_DRIVER + "./" + DATABASE_NAME + DATABASE_EXTENSION;
 
+    protected Connection c;
+
     public boolean databaseExists() {
         return new File("./" + DATABASE_NAME + DATABASE_EXTENSION).exists();
     }
@@ -33,17 +35,24 @@ public class DatabaseManager {
     }
 
     public ResultSet makeDatabaseQuery(String query) throws SQLException {
-        Connection c = DriverManager.getConnection(FULL_DATABASE_DRIVER);
+        c = DriverManager.getConnection(FULL_DATABASE_DRIVER);
         Statement s = c.createStatement();
         s.setQueryTimeout(30);
-        return s.executeQuery(query);
+        ResultSet rs = s.executeQuery(query);
+        return rs;
     }
 
     public void makeDatabaseUpdate(String query) throws SQLException {
-        Connection c = DriverManager.getConnection(FULL_DATABASE_DRIVER);
+        c = DriverManager.getConnection(FULL_DATABASE_DRIVER);
         Statement s = c.createStatement();
         s.setQueryTimeout(30);
         s.executeUpdate(query);
+        c.close();
+    }
+
+    public void closeConnection() throws SQLException {
+        if(c != null)
+            c.close();
     }
 
     protected void createTables() {
@@ -105,7 +114,7 @@ public class DatabaseManager {
             String clienteSuscripcion = "CREATE TABLE cliente_suscripcion("
                     + "email_cliente STRING, "
                     + "id_suscripcion INTEGER, "
-                    + "PRIMARY KEY(email_cliente)"
+                    + "PRIMARY KEY(email_cliente, id_suscripcion)"
                     + ")";
 
             //Cubre tambien la relacion paga!
@@ -180,6 +189,7 @@ public class DatabaseManager {
                 "    ('juan@example.com', 123456789, 'password1', 'Juan', 'González', '123-456-7890', 35),\n" +
                 "    ('maria@example.com', 987654321, 'password2', 'Maria', 'López', '987-654-3210', 28),\n" +
                 "    ('carlos@ospifak.com', 555555555, 'password3', 'Carlos', 'Martínez', '555-555-5555', 42),\n" +
+                "    ('timmy@example.com', 12312313, 'password4', 'Tim', 'Petit', '123-123-1234', 7),\n" +
                 "    ('laura@ospifak.com', 444444444, 'password4', 'Laura', 'Fernández', '444-444-4444', 22),\n" +
                 "    ('martin@ospifak.com', 744454414, 'password5', 'Martin', 'Fernández', '444-444-4423', 77);\n" +
                 "\n" +
@@ -188,6 +198,7 @@ public class DatabaseManager {
                 "VALUES\n" +
                 "    ('juan@example.com', 'Buenos Aires'),\n" +
                 "    ('maria@example.com', 'Madrid'),\n" +
+                "    ('timmy@example.com', 'Bahia Blanca'),\n" +
                 "    ('martin@ospifak.com', 'Buenos Aires');\n" +
                 "\n" +
                 "-- Agregar datos a la tabla empleados\n" +
