@@ -41,6 +41,19 @@ public class DatabaseManager {
         ResultSet rs = s.executeQuery(query);
         return rs;
     }
+    public boolean planExist(int idPlan, String category) throws SQLException {
+        boolean exist = false;
+        c = DriverManager.getConnection(FULL_DATABASE_DRIVER);
+        Statement s = c.createStatement();
+        s.setQueryTimeout(30);
+        String query = "SELECT * FROM planes WHERE categoria = '" + category + "' AND id_plan = '"+idPlan+"'";
+        ResultSet rs = s.executeQuery(query);
+        if (rs.next())
+            exist = true;
+        rs.close();
+        c.close();
+        return exist;
+    }
 
     public void makeDatabaseUpdate(String query) throws SQLException {
         c = DriverManager.getConnection(FULL_DATABASE_DRIVER);

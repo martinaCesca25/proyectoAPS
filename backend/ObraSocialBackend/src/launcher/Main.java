@@ -18,9 +18,10 @@ public class Main {
         //demoSignIn(dbm);
         //demoLogin(dbm);
         //demoSubscribe(dbm);
-        //demoRegisterNewPlan(dbm);
+//        demoRegisterNewPlan(dbm);
         //showSubscriptions(dbm);
-        demoInscripcionPlan(dbm);
+//        demoInscripcionPlan(dbm);
+        demoModifyPlan(dbm);
     }
 
     public static void demoLogin(DatabaseManager dbm) {
@@ -123,6 +124,31 @@ public class Main {
         System.out.println("Mostrando planes post-adicion");
         showPlans(dbm);
     }
+    public static void demoModifyPlan(DatabaseManager dbm) {
+        /*
+         * Asume que existen en la base de datos dos planes, uno con (6,"Plata) y otro con (1,Oro)
+         */
+        AdminModifyPlanHandler modifyHandler = new AdminModifyPlanHandler(dbm);
+        System.out.println("Mostrando planes previo a modificacion");
+        showPlans(dbm);
+
+        System.out.println("\nModificando plan");
+
+        modifyHandler.modifyPlanName(6,"Multi 21 Seb","Plata");
+        System.out.println("");
+        System.out.println("Mostrando planes post-modificacion nombre");
+        showPlans(dbm);
+
+        modifyHandler.modifyPlanPrice(6,300,"Plata");
+        System.out.println("");
+        System.out.println("Mostrando planes post-modificacion nombre");
+        showPlans(dbm);
+
+        modifyHandler.modifyPlanAge(1,10,25,"Oro");
+        System.out.println("");
+        System.out.println("Mostrando planes post-modificacion edad");
+        showPlans(dbm);
+    }
 
     public static void showPlans(DatabaseManager dbm) {
         String query = "SELECT * FROM planes";
@@ -131,9 +157,10 @@ public class Main {
             while(rs.next()){
                 System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3)+" "+rs.getInt(4)+" "+rs.getInt(5)+" "+rs.getString(6));
             }
+            rs.close();
 
         } catch(SQLException ex) {
-            System.out.println("Error mostrando planes!");
+            System.out.println("Error mostrando planes!"+ex.getMessage());
         }
     }
 
