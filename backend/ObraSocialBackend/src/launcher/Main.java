@@ -1,6 +1,7 @@
 package launcher;
 
 import database.DatabaseManager;
+import entry.AdminRegisterNewPlanHandler;
 import entry.UserLoginHandler;
 import entry.UserSignInHandler;
 import entry.UserSubscriptionHandler;
@@ -19,7 +20,9 @@ public class Main {
 
         //demoSignIn(dbm);
         //demoLogin(dbm);
-        demoSubscribe(dbm);
+        //demoSubscribe(dbm);
+        demoRegisterNewPlan(dbm);
+        //showSubscriptions(dbm);
     }
 
     public static void demoLogin(DatabaseManager dbm) {
@@ -98,6 +101,41 @@ public class Main {
 
         } catch(SQLException ex) {
             System.out.println("Error mostrando usuarios!");
+        }
+    }
+
+    public static void demoRegisterNewPlan(DatabaseManager dbm) {
+        AdminRegisterNewPlanHandler adminRegisterNewPlanHandler = new AdminRegisterNewPlanHandler(dbm);
+        System.out.println("Mostrando planes previo a adicion");
+        showPlans(dbm);
+
+        System.out.println("");
+        System.out.println("Agregando plan");
+
+        int idPlan = 7;
+        int price = 1000;
+        int minAge = 10;
+        int maxAge = 100;
+        String category = "Oro";
+        String planName = "Platinum God";
+
+        adminRegisterNewPlanHandler.registerNewPlan(idPlan,price,minAge,maxAge,planName,category); //Subscribe exitoso
+
+        System.out.println("");
+        System.out.println("Mostrando planes post-adicion");
+        showPlans(dbm);
+    }
+
+    public static void showPlans(DatabaseManager dbm) {
+        String query = "SELECT * FROM planes";
+        try {
+            ResultSet rs = dbm.makeDatabaseQuery(query);
+            while(rs.next()){
+                System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3)+" "+rs.getInt(4)+" "+rs.getInt(5)+" "+rs.getString(6));
+            }
+
+        } catch(SQLException ex) {
+            System.out.println("Error mostrando planes!");
         }
     }
 }
