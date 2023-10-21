@@ -22,6 +22,7 @@ public class Main {
         //showSubscriptions(dbm);
 //        demoInscripcionPlan(dbm);
         demoModifyPlan(dbm);
+	demoGenerarCupon(dbm);
     }
 
     public static void demoLogin(DatabaseManager dbm) {
@@ -203,5 +204,10 @@ public class Main {
         System.out.println("Tratando de suscribir un menor de edad valido, con plan valido. Esperado: Exito.");
         upsh.subscribeClientToPlan(2, "timmy@example.com", 1, "Oro", "juan@example.com");
 
+    }
+    public static void demoGenerarCupon(DatabaseManager dbm) {
+        PaymentCouponGeneratorHandler pcgh= new PaymentCouponGeneratorHandler(dbm);
+        System.out.println("Obteniendo un cupon de pago para juan@example.com");
+        pcgh.generateCoupon("juan@example.com");
     }
 }
