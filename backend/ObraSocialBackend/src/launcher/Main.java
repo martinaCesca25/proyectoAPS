@@ -207,7 +207,7 @@ public class Main {
     }
     public static void demoGenerarCupon(DatabaseManager dbm) {
         PaymentCouponGeneratorHandler pcgh= new PaymentCouponGeneratorHandler(dbm);
-        System.out.println("Obteniendo un cupon de pago para juan@example.com");
+	System.out.println("\nObteniendo un cupon de pago para juan@example.com");
         pcgh.generateCoupon("juan@example.com");
     }
 }
