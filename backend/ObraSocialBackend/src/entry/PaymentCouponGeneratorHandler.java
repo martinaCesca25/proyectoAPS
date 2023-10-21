@@ -57,7 +57,7 @@ public class PaymentCouponGeneratorHandler {
 
             dbm.closeConnection();
 
-            System.out.println("Usuario: " + email_cliente + ". Plan: " + nombrePlan + "de categoría: " + categoriaPlan + ". Costo: $" + costo);
+            System.out.println("Usuario: " + email_cliente + ". Plan: " + nombrePlan + " de categoría: " + categoriaPlan + ". Costo: $" + costo);
         }catch (SQLException e) {
             e.printStackTrace();
             System.out.println("SQL Error while querying the database.");
