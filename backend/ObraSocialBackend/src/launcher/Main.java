@@ -3,6 +3,7 @@ package launcher;
 import database.DatabaseManager;
 import entry.*;
 
+import javax.xml.crypto.Data;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -18,11 +19,22 @@ public class Main {
         //demoSignIn(dbm);
         //demoLogin(dbm);
         //demoSubscribe(dbm);
-//        demoRegisterNewPlan(dbm);
+        //demoRegisterNewPlan(dbm);
         //showSubscriptions(dbm);
-//        demoInscripcionPlan(dbm);
-        demoModifyPlan(dbm);
-	demoGenerarCupon(dbm);
+        //demoInscripcionPlan(dbm);
+        //demoModifyPlan(dbm);
+        //demoGenerarCupon(dbm);
+        demoDeletePlan(dbm);
+    }
+
+    public static void demoDeletePlan(DatabaseManager dbm){
+        AdminDeletePlanHandler adminDeletePlanHandler = new AdminDeletePlanHandler(dbm);
+        System.out.println("Mostrando planes antes de la eliminacion");
+        showPlans(dbm);
+        adminDeletePlanHandler.deletePlan(1,"Oro");
+        adminDeletePlanHandler.deletePlan(7,"Oro");
+        System.out.println("Mostrando planes despues de la eliminacion");
+        showPlans(dbm);
     }
 
     public static void demoLogin(DatabaseManager dbm) {
