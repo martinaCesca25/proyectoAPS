@@ -22,9 +22,9 @@ public class Main {
         //demoRegisterNewPlan(dbm);
         //showSubscriptions(dbm);
         //demoInscripcionPlan(dbm);
-        //demoModifyPlan(dbm);
+        demoModifyPlan(dbm);
         //demoGenerarCupon(dbm);
-        demoDeletePlan(dbm);
+//        demoDeletePlan(dbm);
     }
 
     public static void demoDeletePlan(DatabaseManager dbm){
