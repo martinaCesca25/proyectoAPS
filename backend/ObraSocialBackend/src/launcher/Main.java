@@ -16,15 +16,46 @@ public class Main {
             dbm.createDatabase();
         }
 
+        //DEMO 1:
+
         //demoSignIn(dbm);
         //demoLogin(dbm);
         //demoSubscribe(dbm);
+
+        //DEMO 2:
+
         //demoRegisterNewPlan(dbm);
         //showSubscriptions(dbm);
         //demoInscripcionPlan(dbm);
-        demoModifyPlan(dbm);
+        //demoModifyPlan(dbm);
         //demoGenerarCupon(dbm);
-//        demoDeletePlan(dbm);
+        //demoDeletePlan(dbm);
+
+        //DEMO 3:
+        demoSolicitarReintegro(dbm);
+    }
+
+    public static void demoSolicitarReintegro(DatabaseManager dbm) {
+        ReimbursementRequestHandler rrh = new ReimbursementRequestHandler(dbm);
+
+        System.out.println("Intentando hacer una solicitud con un cliente inexistente. Esperado: error.");
+        rrh.requestReimbursement("jidingevan@gmail.com", 0, 0, "orden.jpg");
+        System.out.println();
+
+        System.out.println("Intentando hacer una solicitud con un id de reintegro ya utilizado. Esperado: error.");
+        rrh.requestReimbursement("juan@example.com", 1, 0, "orden.jpg");
+        System.out.println();
+
+        System.out.println("Haciendo una solicitud exitosa.");
+        System.out.println("Solicitudes registradas hasta el momento:");
+        rrh.mostrarSolicitudes();
+        System.out.println();
+
+        rrh.requestReimbursement("juan@example.com", 3, 2500, "orden5519");
+        System.out.println();
+
+        System.out.println("Solicitudes registradas despues de la ejecucion:");
+        rrh.mostrarSolicitudes();
     }
 
     public static void demoDeletePlan(DatabaseManager dbm){
