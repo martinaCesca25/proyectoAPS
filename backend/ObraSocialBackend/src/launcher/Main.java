@@ -32,7 +32,9 @@ public class Main {
         //demoDeletePlan(dbm);
 
         //DEMO 3:
+        //ACLARACIÓN: hacer DEMOS USER STORY 6 Y 10 JUNTAS!!! (La segunda necesita de la solicitud de la primera)
         demoSolicitarReintegro(dbm);
+        demoAdministrarReintegrosYPrestaciones(dbm);
     }
 
     public static void demoSolicitarReintegro(DatabaseManager dbm) {
@@ -56,6 +58,49 @@ public class Main {
 
         System.out.println("Solicitudes registradas despues de la ejecucion:");
         rrh.mostrarSolicitudes();
+    }
+    public static void demoAdministrarReintegrosYPrestaciones(DatabaseManager dbm){
+        AdminReimbursementsAndBenefitsHandler arabh= new AdminReimbursementsAndBenefitsHandler(dbm);
+        System.out.println("Intentando hacer una aprobación de reintegro con un id de reintegro inexistente. Esperado: error.");
+        arabh.adminReimbursements(5,"carlos@ospifak.com");
+        System.out.println();
+
+        System.out.println("Intentando hacer una aprobación de reintegro con un email de empleado inexistente. Esperado: error.");
+        arabh.adminReimbursements(2,"carlitos@ospifak.com");
+        System.out.println();
+
+        System.out.println("Intentando hacer una aprobación de reintegro ya aprobado. Esperado: error.");
+        arabh.adminReimbursements(2,"carlos@ospifak.com");
+        System.out.println();
+
+        System.out.println("Haciendo una aprobacion exitosa.");
+        System.out.println("Aprobaciones antes de la ejecución.");
+        arabh.mostrarAprobaciones();
+        arabh.adminReimbursements(3,"carlos@ospifak.com");
+        System.out.println("Aprobaciones despues de la ejecución.");
+        arabh.mostrarAprobaciones();
+
+        System.out.println("Intentando hacer una creacion de prestacion con un id de prestacion ya existente. Esperado: error.");
+        arabh.adminBenefits(2,"Kinesiologia",3,70);
+        System.out.println();
+
+        System.out.println("Intentando hacer una creacion de prestacion con un nombre de prestacion ya existente. Esperado: error.");
+        arabh.adminBenefits(4,"Limpieza Dental",3,70);
+        System.out.println();
+
+        System.out.println("Intentando hacer una creacion de cubrimiento con un nombre de plan  inexistente. Esperado: error.");
+        arabh.adminBenefits(4,"Kinesiologia",10,70);
+        System.out.println();
+
+        System.out.println("Creacion de prestacion y cubrimiento exitoso.");
+        System.out.println("Prestaciones antes de la ejecución.");
+        arabh.mostrarPrestaciones();
+        arabh.adminBenefits(4,"Kinesiologia",3,70);
+        System.out.println("Prestaciones despues de la ejecución.");
+        arabh.mostrarPrestaciones();
+        System.out.println();
+
+
     }
 
     public static void demoDeletePlan(DatabaseManager dbm){
